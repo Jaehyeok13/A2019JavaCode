@@ -6,46 +6,40 @@ import java.util.regex.Pattern;
 
 public class DayofWeeks {
 	Scanner sc = new Scanner(System.in);
-	public void outDay() {
-		System.out.println("====== 입력 날짜 요일 출력 받기 ========");
 	
-		System.out.print("날짜입력 : ");
-		String date = sc.nextLine();
-		
-		// 정규식 사용
-		Pattern p = Pattern.compile("\\W{2,}");
-		Matcher m = p.matcher(date);
-		
-		
-		boolean key = false;
-		if(m.find()) {
-			key = true;
-		}else {
-			System.out.println("구분자가 2개가 아니다.");
+	public String inputday(String input) {
+
+		System.out.println(input);
+		//       구분자(숫자제외모든 문자 _ 언더코어제외)
+		//정규식표현식 이용 하여 년월일 확인    년           월(1~2 글자)01월 1월 구분자만 제대로 넣어주면 문제 없음 
+		Pattern p = Pattern.compile("(\\d{1,4})(\\W)(\\d{1,2})(\\W)(\\d){1,2}");
+		Matcher m = p.matcher(input);
+
+		if (!m.find()) {
+			return "YYYY-MM-DD or YYYY-M-DD or YYYY-M-D 형식 입력 값을 다시 확인 해주세요.";
 		}
-		
-		System.out.println("결과" +key);
-		
-		
-		int year = 0,month = 0,day = 0;
-		
-		String[] sDate = date.split("\\W");
+
+		char dayOfWeek = 0;
+		int year = 0, month = 0, day = 0;
+
+		String[] sDate = input.split("\\W");
 		int count = 0;
-		
-		for(String ymd : sDate) {
-			if(count == 0) {
+
+		for (String ymd : sDate) {
+			System.out.println(ymd);
+			if (count == 0) {
 				year = Integer.parseInt(ymd);
-			}else if(count == 1) {
+			} else if (count == 1) {
 				month = Integer.parseInt(ymd);
-			}else {
+			} else {
 				day = Integer.parseInt(ymd);
 			}
 			count++;
 		}
-        
-        char dayOfWeek = DayofDate(year, month, day);
-		
-        System.out.println(dayOfWeek + "요일");
+
+		dayOfWeek = DayofDate(year, month, day);
+
+		return dayOfWeek+"";
 	}
 	
 	public  int MonthDays(int year, int month) {
@@ -113,4 +107,6 @@ public class DayofWeeks {
 
         return dayOfWeek;
     }
+
+	
 }
