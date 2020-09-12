@@ -10,7 +10,7 @@ public class DayofWeeks {
 	public String inputday(String input) {
 
 		System.out.println(input);
-		//       구분자(숫자제외모든 문자 _ 언더코어제외)
+		//           (\\W) 정규표현식 \W(특수문자를 제외한 모든 문자를 포함한다. _ 언더코어제외)
 		//정규식표현식 이용 하여 년월일 확인    년           월(1~2 글자)01월 1월 구분자만 제대로 넣어주면 문제 없음 
 		Pattern p = Pattern.compile("(\\d{1,4})(\\W)(\\d{1,2})(\\W)(\\d){1,2}");
 		Matcher m = p.matcher(input);
@@ -26,7 +26,7 @@ public class DayofWeeks {
 		int count = 0;
 
 		for (String ymd : sDate) {
-			System.out.println(ymd);
+//			System.out.println(ymd);
 			if (count == 0) {
 				year = Integer.parseInt(ymd);
 			} else if (count == 1) {
