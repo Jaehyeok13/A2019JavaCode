@@ -9,7 +9,7 @@ public class Menu {
 	private Scanner sc = new Scanner(System.in);
 	
 	public void method() {
-		String outday = df.inputday("2020년2일11");
+		String outday = df.inputday("2020년9일13");
 		System.out.println(outday);
 	}
 }
